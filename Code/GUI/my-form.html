@@ -1,0 +1,321 @@
+<html>
+	<head>
+		<title>Sustainable Analysis</title>
+	</head>
+	<style>
+body {
+	font-family:sans-serif;
+	font-size:4vmin; /* unit relative to smallest viewport size */
+}
+h1 {
+    text-align:center;
+	background-color: lightblue;
+	font-weight: normal; 
+	border-style: double;
+}
+h3 {
+	text-align: right;
+	font-size:0.5em;
+	color:
+}
+pre {
+    font-size:0.7em;
+    background:gainsboro;
+    padding:0.5ex 0.5em;
+    margin:0 1em 0 2em;
+    overflow-x:scroll; /* default 'visible' */
+}
+/* styling tabs css ( designed for visualize/identify elements ^^ )*/
+
+.backColor {
+	background-color: lightblue;
+}
+.tabContent {
+	display: none;
+	border-top: none;
+	border-style: double;
+	font-size: .8em;
+}
+.tabsWrapper {
+    border:1px black;
+}
+.outterTabs {
+    padding:0.9ex;
+}
+.tabsWrapper>label {
+    display:inline-block; /* default 'inline' which produce some overlay */
+    border:2px solid transparent;
+    padding:0.5ex;
+}
+.outterTabs>label {
+    color:black;
+}
+.innerTabs>label {
+    color:black;
+	font-size:0.7em;
+	padding:1.5ex;
+	border:1px black;	
+}
+.tabsWrapper>input[type=radio]:checked+label {
+    border-color:gold;
+    color:gold;
+    font-weight:bold;
+}
+.tabsWrapper>input[type=radio] {
+    display:none; /* retrieve element from page display */
+}
+.tabsWrapper>label {
+    white-space:nowrap; /* avoid auto new line inside tab label */
+}
+.tabsWrapper>input[type=radio]:not(:checked)+label {
+    cursor:pointer; /* hand cursor for clickable (unchecked) tab labels */
+}
+.tabsWrapper>.tabContent {
+    display:none; /* default hide contents */
+}
+.tabsWrapper>input[type=radio]:checked+label+input+label+input+label+.tabContent,
+.tabsWrapper>input[type=radio]:checked+label+input+label+.tabContent+.tabContent,
+.tabsWrapper>input[type=radio]:checked+label+.tabContent+.tabContent+.tabContent {
+    display:block; /* show content for each tab specific target */
+}
+.wraptabs>.tabContent, .wraptabs>input[type=radio] {
+    display:none; /* default hide contents and radio elements */
+}
+.wraptabs>label {
+    white-space:nowrap; /* avoid auto new line inside tab label */
+}
+.wraptabs:not(:checked)+label {
+    cursor:pointer; /* hand cursor for clickable (unchecked) tab labels */
+}
+.wrap2tabs>input[type=radio]:checked+label+input+label+.tabContent,
+.wrap2tabs>input[type=radio]:checked+label+.tabContent+.tabContent,
+.wrap3tabs>input[type=radio]:checked+label+input+label+input+label+.tabContent,
+.wrap3tabs>input[type=radio]:checked+label+input+label+.tabContent+.tabContent,
+.wrap3tabs>input[type=radio]:checked+label+.tabContent+.tabContent+.tabContent,
+.wrap4tabs>input[type=radio]:checked+label+input+label+input+label+input+label+.tabContent,
+.wrap4tabs>input[type=radio]:checked+label+input+label+input+label+.tabContent+.tabContent,
+.wrap4tabs>input[type=radio]:checked+label+input+label+.tabContent+.tabContent+.tabContent,
+.wrap4tabs>input[type=radio]:checked+label+.tabContent+.tabContent+.tabContent+.tabContent {
+    display:block; /* show content for each tab specific target */
+}
+
+	</style>
+	<script>
+	
+	function validateForm(input) {
+  		if (input == "") {
+        	alert("Please enter a value");
+    		return false;
+  		}
+	}
+
+	</script>
+	<body>
+	<font face="Verdana">
+        <div class="outterTabs tabsWrapper" style="text-align:center">
+	  <h1>
+	        Sustainable Analysis
+            </h1>
+            <input class="commandTab" type="radio" id="outCmdTab0" name="outCmdTabs" checked>
+            <label for="outCmdTab0">Article</label>
+            <input class="commandTab" type="radio" id="outCmdTab1" name="outCmdTabs">
+            <label for="outCmdTab1">Tags</label>
+            <input class="commandTab" type="radio" id="outCmdTab2" name="outCmdTabs">	
+            <label for="outCmdTab2">Users</label>
+            <div class="tabContent innerTabs tabsWrapper">
+                <input class="commandTab" type="radio" id="inCmdTab00" name="inCmdTabs0" checked>
+                <label for="inCmdTab00">Insert</label>
+                <input class="commandTab" type="radio" id="inCmdTab01" name="inCmdTabs0">
+                <label for="inCmdTab01">Delete</label>
+                <input class="commandTab" type="radio" id="inCmdTab02" name="inCmdTabs0">
+                <label for="inCmdTab02">Search</label>
+                <div class="tabContent backColor">
+                    <h2>Insert Article</h2>
+                    <p> 
+        		<form action="/insertfunc" method="POST" onsubmit "return validateForm">
+            		<div>
+			<br>
+			Enter a Title:
+			<br>
+				<input type="text" name="title">
+			<br><br>
+			Enter the Author:
+			<br>
+				<input type="text" name="author">
+			<br><br>
+			Enter the Date (MM/DD/YYYY):
+			<br>
+				<input type="text" name="date">
+			<br><br>
+			Enter the Tags seperated by a comma:
+			<br>
+				<input type="text" name="tags">
+			<br><br>
+			Enter the Body of the Article:
+			<br>
+				<input type="text" name="body">
+			<br><br>
+            		</div>
+            		<input type="submit" value="Submit">
+       		 	</form>
+		    </p>
+                </div>
+                <div class="tabContent backColor">
+                    <h2>Delete Article</h2>
+                    <p><form action="/deletefunc" method="POST" onsubmit "return validateForm">
+						Enter the ID of the Article to delete:
+						<br>
+						<input type = "text" name = "articleid">
+						<br><br>
+						<input type="submit" value="Submit">
+					</p>
+					</form>
+                </div>
+                <div class="tabContent backColor">
+                    <h2>Search Article</h2>
+                    <p><form action="/searchfunc" method="POST" onsubmit "return validateForm">
+			<div>
+			
+			Search By:
+				<select id="searchby", name = "searchby">
+					<option value = "title">Title</option>
+					<option value = "articleid">Article ID</option>
+					<option value = "author">Author</option>
+					<option value = "name">Tag</option>
+				</select>
+				<br>
+				<input type = "text" name = "info">
+			<br><br>
+			<input type="submit" value="Submit">
+		    </form>
+		    </p>
+            </div>
+			</div>
+			</div>
+            <div class="tabContent innerTabs tabsWrapper">
+            <input class="commandTab" type="radio" id="inCmdTab10" name="inCmdTabs1" checked>
+            <label for="inCmdTab10">Insert</label>
+            <input class="commandTab" type="radio" id="inCmdTab11" name="inCmdTabs1">
+            <label for="inCmdTab11">Delete</label>
+            <input class="commandTab" type="radio" id="inCmdTab12" name="inCmdTabs1">
+            <label for="inCmdTab12">Search</label>
+	            <div class="tabContent backColor">
+	                <h2>Insert Tag</h2>
+	                <form action="/tagINSERT" method="POST" onsubmit="return validateForm">
+					Enter Tag Name:
+					<br>
+					<input type="text" name="name">	
+					<br><br>
+					Enter a Description:
+					<br>
+					<input type="text" name="descr">
+					<br><br>	
+					<input type="submit" value="Submit">
+					</form>
+		        </div>
+		        <div class="tabContent backColor">
+		            <h2>Delete Tag</h2>
+					<p> <form action="/tagDELETE" method="POST" onsubmit="return validateForm">
+					Enter Tag ID:
+					<br>
+					<input type="text" name="tagid">
+					<br><br>
+					<input type="submit" value="Submit">
+					</p>
+					</form>
+					</div>
+				<div class="tabContent backColor">
+					<h2>Search Tags</h2>
+					<p> <form action="/tagSEARCH" method="POST" onsubmit="return validateForm">
+					Enter Tag Name:
+					<br>
+					<input type="text" name="name">
+					<br><br>
+					<input type="submit" value="Submit">
+					</p>
+					</form>
+				</div>
+            </div>
+		<div class="tabContent innerTabs tabsWrapper">
+                <input class="commandTab" type="radio" id="inCmdTab20" name="inCmdTabs2" checked>
+                <label for="inCmdTab20">Create</label>
+                <input class="commandTab" type="radio" id="inCmdTab21" name="inCmdTabs2">
+                <label for="inCmdTab21">Delete</label>
+		<input class="commandTab" type="radio" id="inCmdTab22" name="inCmdTabs2">
+                <label for="inCmdTab22">Search</label>
+      		<div class="tabContent backColor">
+            <h2>Create new user</h2>
+                    <p>
+        		<form action="/user-insert" method="POST">
+            		<div>
+			<br>
+			Name:   
+			<br>
+				<input type="text" name="name">
+			<br><br>
+			Username: 
+			<br>
+				<input type="text" name="username">
+			<br><br>
+			Password: 
+			<br>
+				<input type="password" name="userpass" id = "userInput">
+			<br>
+				<input type = "checkbox" onclick = "showPass()">Show Password
+
+			<script>
+			function showPass(){
+				var x = document.getElementById("userInput");
+				if (x.type === "password"){
+					x.type = "text";}
+				else{x.type= "password";}
+				}
+			</script>
+			<br>
+			Role:
+				<select id="role", name = "role">
+					<option value = "User">User</option>
+					<option value = "Writer">Writer</option>
+					<option value = "Admin">Admin</option>
+				</select>
+			<br>
+			<br>
+            		</div>
+            		<input type="submit" value="Submit">
+       		 	</form>
+		    </p>
+                </div>
+                <div class="tabContent backColor">
+                    <h2>Delete existing user</h2>
+                    <p>Enter the UserID of an existing user:
+        		<form action="/user-delete" method="POST">
+			<br>
+				<input type = "text" name = "userid">
+			<br>
+			<br>
+            		<input type="submit" value="Submit">
+       		 	</form>
+		</p>
+                </div>
+                <div class="tabContent backColor">
+                    <h2>Search for existing user</h2>
+                    <p>Enter the UserID of an existing user:
+        		<form action="/user-search" method="POST">
+			<br>
+				<input type = "text" name = "usersearchid">
+			<br>
+			<br>
+            		<input type="submit" value="Submit">
+       		 	</form>
+		</p>
+                </div>
+
+            </div>	
+
+			<h3>
+			*choose 2 tabs               
+			</h3>	
+	
+	</body>
+</html>
+

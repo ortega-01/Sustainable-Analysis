@@ -1,0 +1,70 @@
+<!-- /templates/my-result.html-->
+
+<html>
+    <head>
+        <title>Search Results</title>
+    </head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+    <!-- Adding some style to table (OPTIONAL) -->
+    <style type="text/css">
+
+    th:tr{
+        color: blue;
+    }
+    tr:nth-of-type(2n){
+        border: 1px solid black;
+        background-color: rgba(150, 150, 150, 0.5);
+    }
+
+    td{
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+
+	.previous {
+  		background-color: #f1f1f1;
+  		color: black;
+	}
+    </style>
+
+    <body>
+	<table>
+			<tr>
+				<th>Title</th>
+				<th>Date</th>
+				<th>Author</th>
+				<th>Text</th>
+				<th>Total Views</th>
+			</tr>
+        <!-- nested for loops in jinja template -->
+	{%for row in rows%}
+	    <tr>
+	    {%for col in row%}
+	        <td>{{col}}</td>
+	    {%endfor%}
+	    </tr>
+	{%endfor%}
+	</table>
+	<br>
+	<input type = "button" onclick = "window.location = 'http://127.0.0.1:5000/';" value = "Previous">
+    </body>
+
+</html>
